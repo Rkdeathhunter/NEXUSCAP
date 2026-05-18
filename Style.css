@@ -1,0 +1,82 @@
+/* 1. Center the form on the page */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevents scrollbars during animation */
+  background-color: #f0f0f0; 
+}
+
+/* 2. The Overlay Container */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Start the dot at the top */
+  z-index: 10;
+  pointer-events: none; /* Allows clicks to pass through once finished */
+}
+
+/* 3. The Dot Animation */
+.dot {
+  width: 20px;
+  height: 20px;
+  background-color:antiquewhite; /* Your specified color */
+  border-radius: 50%;
+  animation: dropAndExpand 3s forwards ease-in-out;
+}
+
+@keyframes dropAndExpand {
+  0% {
+    transform: translateY(-50px);
+    border-radius: 50%;
+  }
+  40% {
+    /* Drops to the center */
+    transform: translateY(50vh);
+    width: 20px;
+    height: 20px;
+  }
+  100% {
+    /* Expands to cover the screen */
+    transform: translateY(50vh) scale(150); /* Scale high enough to cover corners */
+    border-radius: 50%;
+  }
+}
+
+/* 4. The Form Animation */
+.form-container {
+  position: relative;
+  z-index: 20; /* Sits above the expansion */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: formAppear 0.8s forwards;
+  animation-delay: 2s; /* Waits for the dot to finish expanding */
+  
+  /* Styling for the box in your image */
+  border: 1px solid #333;
+  padding: 30px;
+  margin:10px;
+  background: white;
+}
+
+@keyframes formAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#Box{
+  border: 1px solid black;
+  height: 25vh;
+  width: 25vw;
+}
+h1{
+  text-align: center;
+}
